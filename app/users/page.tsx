@@ -1,27 +1,18 @@
 import db from "../lib/db";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import getSession from "../lib/session";
 
-export default async function Profile({ params }: { params: { username: string } }) {
-
-  const user = await db.user.findUnique({
-    where: { username: params.username },
-    include: { tweets: true },
+export default async function UsersPage() {
+  const users = await db.user.findMany({
+    select: { id: true, username: true },
   });
-
-  if (!user) return notFound();
-
-  const session = await getSession(); 
 
   return (
     <div>
-      <h1>{user.username}</h1>
-      {session?.id === user.id && (
-        <Link href={`/users/${user.username}/edit`}>Edit</Link>
-      )}
-      {user.tweets.map(tweet => (
-        <div key={tweet.id}>{tweet.tweet}</div> 
+      <h1>Users</h1>
+      {users.map(user => (
+        <div key={user.id}>
+          <Link href={`/users/${user.username}`}>{user.username}</Link>
+        </div>
       ))}
     </div>
   );

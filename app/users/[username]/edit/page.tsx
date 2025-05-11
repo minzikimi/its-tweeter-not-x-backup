@@ -1,4 +1,3 @@
-// app/users/[username]/edit/page.tsx
 import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
 import { notFound } from "next/navigation";
