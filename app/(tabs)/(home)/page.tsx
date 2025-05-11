@@ -2,6 +2,8 @@ import db from "@/app/lib/db";
 import TweetList from "@/app/components/tweet-list";
 import { Prisma } from "@prisma/client";
 import AddTweet from "@/app/components/add-tweeter"; 
+export const dynamic = "force-dynamic";
+
 
 async function getInitialTweets() {
   const tweets = await db.tweet.findMany({
