@@ -15,7 +15,7 @@ export default function CreateAccount() {
       // style={{ backgroundImage: "url('/images/y2kbg.jpg')" }}
     >
       <div className="flex flex-col gap-2 mb-6 text-center w-full max-w-sm px-2">
-        <h1 className="text-3xl font-bold text-white">Welcome!</h1>
+        <h1 className="text-3xl font-bold text-white">Welcome</h1>
         <h2 className="text-lg text-neutral-400">Fill in the form below to join!</h2>
       </div>
 
