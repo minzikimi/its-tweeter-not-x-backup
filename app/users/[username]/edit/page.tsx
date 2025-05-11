@@ -3,11 +3,15 @@ import getSession from "@/app/lib/session";
 import { notFound } from "next/navigation";
 import EditProfileForm from "./edit-profile";
 
-export default async function EditProfilePage({ params }: { params: { username: string } }) {
+export default async function EditProfilePage({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}) {
+  const { username } = await params;
+
   const session = await getSession();
   if (!session?.id) notFound();
-
-  const { username } = params;
 
   const user = await db.user.findUnique({
     where: { username },
