@@ -2,13 +2,13 @@
 
 import Button from "@/app/components/btn";
 import Input from "@/app/components/input";
-import { useActionState } from "react";
+import { useFormState } from "react-dom";
 import { login } from "./actions";
 import Link from "next/link";
 import Logo from "@/app/components/logo";
 
 export default function Login() {
-  const [state, dispatch] = useActionState(login, null);
+  const [state, dispatch] = useFormState(login, null);
 
   return (
     <main className="p-8 min-h-screen bg-black flex flex-col justify-center items-center">

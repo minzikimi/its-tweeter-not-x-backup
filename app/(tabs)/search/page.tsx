@@ -1,9 +1,9 @@
 "use client";
-import { useActionState } from "react";
+import { useFormState } from "react-dom";
 import { searchTweets, TweetWithUser } from "./actions";
 
 export default function Search() {
-  const [tweets, formAction] = useActionState<TweetWithUser[], FormData>(searchTweets, []);
+  const [tweets, formAction] = useFormState<TweetWithUser[], FormData>(searchTweets, []);
 
   return (
     <div className="w-full min-h-screen bg-black">

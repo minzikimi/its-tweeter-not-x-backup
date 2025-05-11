@@ -18,9 +18,9 @@ async function getTweet(id: number) {
 export default async function TweetDetail({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }) {
-  const { id } = await params;
+  const { id } =  params;
   const numId = Number(id);
   if (isNaN(numId)) return notFound();
   const tweet = await getTweet(numId);

@@ -1,6 +1,6 @@
 "use client";
 import { useOptimistic } from "react";
-import { useActionState } from "react";
+import { useFormState } from "react-dom";
 import { addTweetResponse } from "../service/response-service";
 import { z } from "zod";
 
@@ -61,7 +61,7 @@ export default function Responses({ initialResponses, tweetId, username }: Respo
   };
 
 
-  const [state, action] = useActionState<FormState, FormData>(handleSubmit, null);
+  const [state, action] = useFormState<FormState, FormData>(handleSubmit, null);
 
   return (
     <div className="flex flex-col gap-3 w-full">

@@ -2,12 +2,12 @@
 
 import Button from "@/app/components/btn";
 import Input from "@/app/components/input";
-import { useActionState } from "react";
+import { useFormState } from "react-dom";
 import { createAccount } from "./actions"; 
 import { PASSWORD_MIN_LENGTH } from "@/app/lib/constants";
 
 export default function CreateAccount() {
-  const [state, dispatch] = useActionState(createAccount, null);
+  const [state, dispatch] = useFormState(createAccount, null);
 
   return (
     <main

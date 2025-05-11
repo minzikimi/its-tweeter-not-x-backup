@@ -1,9 +1,9 @@
 "use client";
-import { useActionState } from "react";
+import { useFormState } from "react-dom";
 import { uploadTweet } from "../service/tweet-service";
 
 export default function AddTweet() {
-  const [state, action] = useActionState(uploadTweet, null);
+  const [state, action] = useFormState(uploadTweet, null);
   return (
     <form
       action={action}
