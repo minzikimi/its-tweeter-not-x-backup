@@ -1,32 +1,24 @@
 import db from "@/app/lib/db";
-import Link from "next/link";
-import { notFound } from "next/navigation";
 import getSession from "@/app/lib/session";
+import { notFound } from "next/navigation";
+import EditProfileForm from "./edit-profile";
 
-export default async function Profile({
-  params,
-}: {
-  params: Promise<{ username: string }>;
-}) {
+export default async function EditProfilePage({ params }: { params: Promise<{ username: string }> }) {
+  const session = await getSession();
+  if (!session?.id) notFound();
+
   const { username } = await params;
+
   const user = await db.user.findUnique({
     where: { username },
-    include: { tweets: true },
+    select: { id: true, username: true, email: true, bio: true },
   });
 
-  if (!user) return notFound();
+  if (!user) notFound();
+  if (session.id !== user.id) notFound(); // id로 비교!
 
-  const session = await getSession();
-
-  return (
-    <div>
-      <h1>{user.username}</h1>
-      {session?.id === user.id && (
-        <Link href={`/users/${user.username}/edit`}>Edit</Link>
-      )}
-      {user.tweets.map((tweet) => (
-        <div key={tweet.id}>{tweet.tweet}</div>
-      ))}
-    </div>
-  );
+  return <EditProfileForm user={{
+    ...user,
+    bio: user.bio ?? undefined,
+  }} />;
 }
