@@ -1,3 +1,4 @@
+// app/users/[username]/edit/page.tsx
 import db from "@/app/lib/db";
 import getSession from "@/app/lib/session";
 import { notFound } from "next/navigation";
@@ -6,9 +7,9 @@ import EditProfileForm from "./edit-profile";
 export default async function EditProfilePage({
   params,
 }: {
-  params: Promise<{ username: string }>;
+  params: { username: string };
 }) {
-  const { username } = await params;
+  const { username } = params;
 
   const session = await getSession();
   if (!session?.id) notFound();
